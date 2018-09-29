@@ -1,39 +1,97 @@
 ---
 # tasks file for install_manager
-    - name: Read Machine-Information
-      #shell: cat /etc/machine-info | grep -e '^DEPLOYMENT='
+# This is the Menu 
+    - name: Clear gathered facts from all currently targeted hosts
+      meta: clear_facts
+    - name: Import Menu Variables
+      include_vars: 'defaults/package_menu.yml'
+
+    - name: Populate Install Menu
+      set_fact:
+        bothld: "{{ bothld|default([]) + [ {'deployment': item.deployment, 'long_depl': item.long_depl} ] }}"
+        deployments: "{{ deployments|default([]) + [  item.deployment  ] }}"
+      with_items: "{{ machine.env }}"
+
+    - name: Populate long_menu
+      set_fact:
+        longdep: "{{ longdep|default([]) + [  item.long_depl  ] }}"
+      with_items: "{{ machine.env }}" 
+
+    - name: Read Machine-Information from machine-info
       command: sed 's/^DEPLOYMENT=//' /etc/machine-info
       args:
         warn: false
       register: statmachine_info
 
+    - name: env is
+      set_fact: 
+        env: "{{ statmachine_info.stdout }}"
+      register: new_envir
+      #when: 
+    - debug:
+         var: new_envir.stdout
     - debug:  
-    #statmachine_info.stdout
         var:   statmachine_info.stdout
-    - set_fact:
-        macine_informations: "{{ statmachine_info.stdout }}"
-   
-    - debug:
-        var: env
+    - name: Set the facts from statmachine_info.stdout
+      set_fact:
+         machine_deployment: "{{ statmachine_info.stdout }}"
 
-    - debug:
-        var: hostvars[inventory_hostname]['macine_informations']
+    #- debug:
+    #    var: hostvars[inventory_hostname]['machine_deployment']
           
         # statmachine_info.stdout.find('DEPLOYMENT=Development')
       #when: statmachine-info.lineout.find('DEPLOYMENT')  
     - fail:
        msg: |
-         "You need to define enviroment | [ env='dev' ] | [ env='base' ] is valid values
-          example: |  ansible-playbook -i hosts -e env='base' |"
+         "You need to define enviroment
+         [ env='{{ item }}' ] example:   ansible-playbook -i hosts -e env='{{ item }}'|"
+      with_items: "{{ hostvars[inventory_hostname].deployments }}"
       when: 
-        not( env is defined) or (env is none) or (env |trim =='')
+        - not( env is defined)
+          or (env is none)
+          or ( env |trim =='')
+          #or ( "statmachine_info.stout |trim ==''" )
+
     - name: Test Dev
       include_vars:
         file: defaults/default_package_vars/package_{{env}}.yml
-      when: ( env == 'dev')
+      when: ( env == 'Development') # and ( hostvars[inventory_hostname]['machine_deployment'] == env )
     - name: Include Base
       include_vars:
         file: defaults/default_package_vars/package_{{env}}.yml
       when: ( env == 'base')
+
+    # Trying to Automate the loading of var files
+    - name: Test Auto Load
+      include_vars:
+        file: "defaults/default_package_vars/package_{{ item.deployment }}.yml"
+      when: ( env == item.deployment ) and ( hostvars[inventory_hostname]['machine_deployment'] == item.long_depl )
+      #with_items: "{{ hostvars[inventory_hostname].deployments }}"
+      with_items: "{{ hostvars[inventory_hostname].bothld}}" 
+      ## End test
+
+    - name: test
+      debug: 
+         msg: 'johan is the king {{test}} dude Environemnt is {{ machine.env }}' 
+      when: ( hostvars[inventory_hostname]['machine_deployment'] == env )
+    
+    #- name: Test of machine Dictonary
+    #  set_facts:
+    #    deployments: "{{ deployments|default({}) | combine( {item.item.deployment: item.stdout} ) }}"
+    #  with_items: "{{ machine.results }}"
+    #  register: Machine_Dictat
+
+   # - action: shell echo "{{ item.deployment | join(',')}}"
+    #  with_items: "{{machine}}"
+    #- debug:
+    #    var: install_packages
+
     - debug:
-        var: install_packages
+        msg: "env='{{ item }}'"
+      with_items: "{{ hostvars[inventory_hostname].bothld }}"
+    - debug:
+       msg:  "{{ item.long_depl }}{{ item.deployment }}"
+      with_items: "{{ hostvars[inventory_hostname].bothld}}" 
+
+    
+    

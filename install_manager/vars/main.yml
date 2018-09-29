@@ -1,2 +1,3 @@
 ---
 # vars file for install_manager
+test:  "{{ hostvars[inventory_hostname]['machine_deployment'] }}"

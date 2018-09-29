@@ -1,5 +1,7 @@
 ---
 - hosts: localhost
   remote_user: jsorell
+  get_facts: no
+  
   roles:
     - install_manager

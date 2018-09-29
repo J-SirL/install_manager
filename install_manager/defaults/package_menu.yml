@@ -1,0 +1,9 @@
+---
+# This is the menu file for install manager
+# Define the menu 
+machine:
+ env:
+    - { deployment: 'prod', long_depl: 'production'}
+    - { deployment: 'dev', long_depl: 'Development'}
+    - { deployment: 'stage', long_depl: 'staging'}
+#- machine.env.deployment  
