@@ -1,0 +1,6 @@
+---
+install_packages:
+ - ansible
+ - code
+ - git
+ - ansible-lint

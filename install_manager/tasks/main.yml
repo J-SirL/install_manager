@@ -1,0 +1,39 @@
+---
+# tasks file for install_manager
+    - name: Read Machine-Information
+      #shell: cat /etc/machine-info | grep -e '^DEPLOYMENT='
+      command: sed 's/^DEPLOYMENT=//' /etc/machine-info
+      args:
+        warn: false
+      register: statmachine_info
+
+    - debug:  
+    #statmachine_info.stdout
+        var:   statmachine_info.stdout
+    - set_fact:
+        macine_informations: "{{ statmachine_info.stdout }}"
+   
+    - debug:
+        var: env
+
+    - debug:
+        var: hostvars[inventory_hostname]['macine_informations']
+          
+        # statmachine_info.stdout.find('DEPLOYMENT=Development')
+      #when: statmachine-info.lineout.find('DEPLOYMENT')  
+    - fail:
+       msg: |
+         "You need to define enviroment | [ env='dev' ] | [ env='base' ] is valid values
+          example: |  ansible-playbook -i hosts -e env='base' |"
+      when: 
+        not( env is defined) or (env is none) or (env |trim =='')
+    - name: Test Dev
+      include_vars:
+        file: defaults/default_package_vars/package_{{env}}.yml
+      when: ( env == 'dev')
+    - name: Include Base
+      include_vars:
+        file: defaults/default_package_vars/package_{{env}}.yml
+      when: ( env == 'base')
+    - debug:
+        var: install_packages

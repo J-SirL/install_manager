@@ -1,0 +1,18 @@
+---
+install_packages:
+ - epel-release
+ - ansible
+ - mc
+ - htop
+ - iptraf-ng
+ - nmap
+ - tcpdump
+ - git
+ - python-pip
+ - iotop
+ - yum-utils
+ - device-mapper-persistent-data
+ - lvm2
+ - python-devel
+ - python-docker-py
+ - munin-node

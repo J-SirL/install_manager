@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  tasks:
+    - fail: 
+       msg: | 
+         "You need to define enviroment | [ env='dev' ] | [ env='base' ] is valid values 
+          example: |  ansible-playbook -i hosts -e env='base' |"
+      when: env is not defined
+    - name: Test
+      include_vars:
+        file: vars/install_dev.yml
+      when: ( env == 'dev')
+    - name: Include Base
+      include_vars:
+        file: vars/install_base.yml
+      when: ( env == 'base')
+    - debug:
+        var: install_packages
