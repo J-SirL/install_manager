@@ -2,6 +2,9 @@
 - hosts: localhost
   remote_user: jsorell
   get_facts: no
-  
+  #pre_tasks:
+  # include:
+     # install_manager/tasks/set_deployment.yml  depll="Johan is the King"
   roles:
     - install_manager
+  

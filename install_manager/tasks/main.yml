@@ -1,6 +1,8 @@
 ---
 # tasks file for install_manager
 # This is the Menu 
+    - include: tasks/set_deployment.yml
+      tags: set_dep
     - name: Clear gathered facts from all currently targeted hosts
       meta: clear_facts
     - name: Import Menu Variables

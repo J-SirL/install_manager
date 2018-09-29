@@ -1,0 +1,10 @@
+# This file sets the deployment variable to the host
+---
+#- hosts: localhost
+#  tasks:  
+- name: Set Deployment Variable
+  become: true
+  become_user: root
+  command: hostnamectl set-deployment {{depll}}
+  when: depll is defined
+  tags: set_dep
