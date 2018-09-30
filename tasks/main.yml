@@ -5,8 +5,8 @@
       include_tasks:
         tasks/set_deployment.yml
       when: depll is defined
-      tags: depll
-      
+      tags: Set_Deploy
+
     - name: Clear gathered facts from all currently targeted hosts
       meta: clear_facts
     - name: Import Menu Variables

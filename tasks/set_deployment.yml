@@ -14,4 +14,4 @@
   become_user: root
   command: hostnamectl set-deployment {{depll}}
   when: depll is defined and not ( depll_read.stdout =='') and ( depll != depll_read.stdout )
-  tags: set_dep
+  tags: Set_Deploy
