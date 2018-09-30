@@ -22,10 +22,10 @@ install_packages:
 ``` markdown
 | install_packages: |
 | -----------------:| 
-| - ansible         |
-| - code            |
-| - git             |
-| - ansible-lint    |
+| '- ansible'         |
+| '- code'            |
+| '- git'             |
+| '- ansible-lint'    |
 ```
 install_packages: | Default Contents of package_dev.yml
 ------------ | -------------
