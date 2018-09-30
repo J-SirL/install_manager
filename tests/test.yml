@@ -1,9 +1,36 @@
 ---
 - hosts: all
+  #vars:
+  #########################################################
+  # [DEPRECATION WARNING]: Specifying include variables at the top-level of the task is deprecated. Please see: https://docs.ansible.com/ansible/playbooks_roles.html#task-include-files-
+  # and-encouraging-reuse   for currently supported syntax regarding included files and variables. This feature will be removed in version 2.7. Deprecation warnings can be disabled by
+  # setting deprecation_warnings=False in ansible.cfg.
+  # That's why I just write the diffrent default values belo but not use them
+  #########################################################
+  ################## DEFAULT VARS ##########################
+  # -- These are the default variables that can be changed!
+  # -- Remember to manually add a file to defaults/default_package_vars
+  # -- if you change the values. 
+  #
+  #Set deplyment variable
+  #  - depll: Staging
+  
+  # Define the menu 
+  #  - machine:
+  #    env:
+  #      - { deployment: 'prod', long_depl: 'production'}
+  #      - { deployment: 'dev', long_depl: 'Development'}
+  #      - { deployment: 'stage', long_depl: 'staging'}
+  #Menu -END
+   
+    #TODO: fix an automatic file creator via templating if default variables in the menu are changed
   tasks:
-    - name: Hello World
-      debug:
-        msg: "what the fuck's wrong"
+    - name: Include Set deployment task
+      include_tasks:
+        tasks/set_deployment.yml
+      when: depll is defined
+      tag: depll
   roles:
-    - install_manager
+    - install_manager  
+
   
