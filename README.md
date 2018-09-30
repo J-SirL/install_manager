@@ -27,6 +27,10 @@ Including an example of how to use your role (for instance, with variables passe
       roles:
          - { role: username.rolename, x: 42 }
 
+Usage Examples:
+
+ansible-playbook -i inventory test.yml -u jsorell -k -e env=prod -e depll=Production -t set_dep
+
 License
 -------
 

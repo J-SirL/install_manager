@@ -1,8 +1,12 @@
 ---
 # tasks file for install_manager
 # This is the Menu 
-    - include: tasks/set_deployment.yml
-      tags: set_dep
+    - name: Include Set deployment task
+      include_tasks:
+        tasks/set_deployment.yml
+      when: depll is defined
+      tags: depll
+      
     - name: Clear gathered facts from all currently targeted hosts
       meta: clear_facts
     - name: Import Menu Variables
