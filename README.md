@@ -32,8 +32,8 @@ Usage Example:
 ```markdown
 Default values that you can use with depll variable:
 * production
-- development
-+ staging
+* development
+* staging
 ```
 
     ansible-playbook -i inventory test.yml -e depll=roduction -t set_dep -l hostname
