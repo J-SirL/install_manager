@@ -11,7 +11,7 @@ Any pre-requisites that may not be covered by Ansible itself or the role should 
 Role Variables
 --------------
 
-###This role is easily cofigured for every type of usage:
+### This role is easily cofigured for every type of usage:
 Below is the description of the default variables and how you can change it to work for your enironment:
 ['install_packages']
 ```
