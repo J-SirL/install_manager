@@ -16,6 +16,11 @@ Below is the description of the default variables and how you can change it to w
 This is example is the default package_dev.yml file containing the development servers packages that are ready for installations<br>
 ```
 install_packages:
+ - package_name
+ - package_name
+```
+```
+install_packages:
  - ansible
  - code
  - git
