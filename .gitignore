@@ -3,3 +3,6 @@
 
 # Ignore all roles under test
 /tests/roles/
+
+#Inore retry files
+*.retry
