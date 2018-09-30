@@ -1,6 +1,23 @@
 ---
+#####################
+#
+# This file is managed by Ansible.
+#
+# Created/changed date: 2018-09-30 17:57:20
+# By user/dep: jsorell
+#
+#####################
+  
+#######
+#
+# This packagefile has the long_env set to:"development" and the short_en to:"dev"
+#
+#######
+   ###
+    #
 install_packages:
  - ansible
  - code
- - git
  - ansible-lint
+ - git
+...
