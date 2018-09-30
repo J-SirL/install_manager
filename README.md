@@ -19,12 +19,12 @@ install_packages:
  - package_name
  - package_name
 ```
-```
+
 install_packages: | Default Contents of package_dev.yml
 ----------------- | -------------
 - ansible         | code 
  git              | ansible-lint
-```
+
 
 Dependencies
 ------------
