@@ -1,2 +1,5 @@
 # Ignoring install_manager under roles in test directory
-/tests/roles/install_manager
+#/tests/roles/install_manager
+
+# Ignore all roles under test
+/tests/roles/
