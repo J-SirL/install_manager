@@ -13,7 +13,7 @@ Role Variables
 
 ### This role is easily cofigured for every type of usage:
 Below is the description of the default variables and how you can change it to work for your enironment:<br>
-This is the current package_dev.yml file containing the development servers packages<br>
+This is example is the default package_dev.yml file containing the development servers packages that are ready for installations<br>
 ```
 install_packages:
  - ansible
