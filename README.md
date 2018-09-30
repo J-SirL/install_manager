@@ -20,8 +20,8 @@ install_packages:
  - package_name
 ```
 ```
-| install_packages: | Description |
-| -----------------:| -----------:|
+| install_packages: |
+| -----------------:| 
 | - ansible         |
 | - code            |
 | - git             |
