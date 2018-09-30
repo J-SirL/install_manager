@@ -19,11 +19,11 @@
    
     #TODO: fix an automatic file creator via templating if default variables in the menu are changed
   tasks:
-    - name: Include Set deployment task
-      include_tasks:
-        tasks/set_deployment.yml
-      when: depll is defined
-      tags: depll
+    #- name: Include Set deployment task
+    #  include_tasks:
+    #    tasks/set_deployment.yml
+    #  when: depll is defined
+    #  tags: depll
   roles:
     - install_manager  
 
