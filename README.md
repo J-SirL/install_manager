@@ -28,9 +28,10 @@ Including an example of how to use your role (for instance, with variables passe
          - { role: username.rolename, x: 42 }
 
 Usage Examples:
+**Setting the deployment variable to a host**
 
 
-    ansible-playbook -i inventory test.yml -e depll=Production -t set_dep
+    ansible-playbook -i inventory test.yml -e depll=Production -t set_dep -l hostname
 
 
 
