@@ -29,8 +29,9 @@ Including an example of how to use your role (for instance, with variables passe
 
 Usage Example:
 **Setting the deployment variable to a host**
+
+Default values that you can use with **depll** variable:
 ```markdown
-Default values that you can use with depll variable:
 * production
 * development
 * staging
