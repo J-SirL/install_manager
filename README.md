@@ -22,7 +22,7 @@ install_packages:
 
 install_packages: | Default Contents of package_dev.yml
 ----------------- | -------------
-- ansible         | code 
+ansible         | code 
  git              | ansible-lint
 
 
