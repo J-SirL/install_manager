@@ -4,6 +4,6 @@
 machine:
  env:
     - { deployment: 'prod', long_depl: 'production'}
-    - { deployment: 'dev', long_depl: 'Development'}
+    - { deployment: 'dev', long_depl: 'development'}
     - { deployment: 'stage', long_depl: 'staging'}
 #- machine.env.deployment  

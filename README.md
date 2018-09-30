@@ -30,15 +30,13 @@ Including an example of how to use your role (for instance, with variables passe
 Usage Example:
 **Setting the deployment variable to a host**
 ```
-depll default values that you can use:
-machine:
- env:
-    - { deployment: 'prod', long_depl: 'production'}
-    - { deployment: 'dev', long_depl: 'Development'}
-    - { deployment: 'stage', long_depl: 'staging'}
+Default values that you can use with depll variable:
+* production
+- development
++ staging
 ```
 
-    ansible-playbook -i inventory test.yml -e depll=Production -t set_dep -l hostname
+    ansible-playbook -i inventory test.yml -e depll=roduction -t set_dep -l hostname
 
 
 
