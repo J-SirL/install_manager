@@ -36,7 +36,7 @@ Default values that you can use with **depll** variable:
 * staging
 ```
 
-    ansible-playbook -i inventory test.yml -e depll=roduction -t set_dep -l hostname
+    ansible-playbook -i inventory test.yml -e depll=production -t set_dep -l hostname
 
 
 
