@@ -12,7 +12,7 @@ Role Variables
 --------------
 
 ### This role is easily cofigured for every type of usage:
-Below is the description of the default variables and how you can change it to work for your enironment:
+Below is the description of the default variables and how you can change it to work for your enironment:<br>
 ['install_packages']
 ```
 install_packages:
