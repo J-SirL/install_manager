@@ -6,17 +6,26 @@
     deploya_env_long: development
     deploya_env_short: dev
     template_string: 'This packagefile has the long_env set to:"{{deploya_env_long}}" and the short_en to:"{{deploya_env_short}}"'
+    tagged: "over_write_{{ deploya_env_short }}"
     programs: 
-        - { program: 'wget'}
-        - { program: 'top'}
+        - { program: 'ansible'}
+        - { program: 'code'}
+        - { program: 'ansible-lint'}
         - { program: 'git'}
-    #['program1','wget','top']
     
-    #achine:
-    #    env:
-    #        - { deployment: 'prod', long_depl: 'production'} 
+    env_tag_ovvervvrite: nofeck
+ 
   tasks:
+    - name: Check if default_env_file_exists
+      stat:
+        path: "../defaults/default_package_vars/package_{{deploya_env_short}}.yml"
+      register: default_package_env_exists
+
     - name: Create the file package file
       template:
         src: ../templates/install_package_var_file.j2
-        dest: /tmp/testar.DETTA 
+        dest: "../defaults/default_package_vars/package_{{deploya_env_short}}.yml"
+      when: not default_package_env_exists.stat.exists or ( env_tag_ovvervvrite == tagged )
+    - debug:
+        var: tagged
+    

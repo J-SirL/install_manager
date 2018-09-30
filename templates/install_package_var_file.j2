@@ -1,8 +1,8 @@
 ---
-{{ ansible_managed | comment( prefix='#####################\n#', postfix='#\n#####################\n') }}  
+{{ ansible_managed | comment( prefix='#####################\n#', postfix='#\n#####################\n')}}  
 {{ template_string   | comment('plain', prefix='#######\n#', postfix='#\n#######\n   ###\n    #') }}
 install_packages:
 {% for item in programs %}
- - {{ item.program }} 
+ - {{item.program}}
 {% endfor %}
 ...
