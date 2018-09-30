@@ -19,7 +19,7 @@ install_packages:
  - package_name
  - package_name
 ```
-```
+``` markdown
 | install_packages: |
 | -----------------:| 
 | - ansible         |
