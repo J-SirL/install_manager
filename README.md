@@ -20,10 +20,23 @@ install_packages:
  - package_name
 ```
 
-install_packages: | Default Contents of package_dev.yml
+install_packages: | Default Contents of: default_package_vars/package_dev.yml
 ----------------- | -------------
 ansible         | code 
  git              | ansible-lint
+
+install_packages: | Default Contents of: default_package_vars/package_base.yml
+----------------- | -------------
+epel-release  | ansible
+mc | htop
+iptraf-ng | nmap
+tcpdump | python-pip
+iotop | yum-utils
+device-mapper-persistent-data | lvm2
+python-devel | python-docker-py
+munin-node
+
+
 
 
 Dependencies
