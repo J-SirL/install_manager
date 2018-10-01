@@ -2,11 +2,10 @@
 # tasks file for install_manager
 # This is the Menu 
     - name: Include Set deployment task
-      var: 
-        Set_Deploy: no
       include_tasks:
        tasks/set_deployment.yml
-      when: (depll is defined) and ( 'Set_Deply in "{{depll}}"')
+      when: (depll is defined) and (set_env is defined) and (set_env|bool == true)
+
     - name: Clear gathered facts from all currently targeted hosts
       meta: clear_facts
     - name: Import Menu Variables
@@ -28,12 +27,12 @@
       args:
         warn: false
       register: statmachine_info
+      changed_when: no
 
     - name: env is
       set_fact: 
         env: "{{ statmachine_info.stdout }}"
       register: new_envir
-      #when: 
     - debug:
          var: new_envir.stdout
     - debug:  

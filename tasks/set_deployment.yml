@@ -2,16 +2,15 @@
 ---
 #- hosts: localhost
 #  tasks:  
-- name: Read Machine-Information from machine-info
+- name: SET_DEPLOYMENT | Read Machine-Information from machine-info
   command: sed 's/^DEPLOYMENT=//' /etc/machine-info
   args:
     warn: false
   register: depll_read
   changed_when: no
 
-- name: Set Deployment Variable
+- name: SET_DEPLOYMENT | Set Deployment Variable
   become: true
   become_user: root
   command: hostnamectl set-deployment {{depll}}
   when: depll is defined and not ( depll_read.stdout =='') and ( depll != depll_read.stdout )
-  tags: Set_Deploy
