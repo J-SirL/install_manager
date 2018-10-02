@@ -2,9 +2,8 @@
 - hosts: localhost
   connection: local
   vars:
-    list1: ['Apple','Banana','Cat', 'Dog']
-    deploya_env_long: development
-    deploya_env_short: dev
+    deploya_env_long: stationX
+    deploya_env_short: Statx
     template_string: 'This packagefile has the long_env set to:"{{deploya_env_long}}" and the short_en to:"{{deploya_env_short}}"'
     tagged: "over_write_{{ deploya_env_short }}"
     programs: 

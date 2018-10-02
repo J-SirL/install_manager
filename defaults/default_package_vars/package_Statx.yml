@@ -1,0 +1,20 @@
+---
+#####################
+#
+# Ansible managed
+#
+#####################
+  
+#######
+#
+# This packagefile has the long_env set to:"stationX" and the short_en to:"Statx"
+#
+#######
+   ###
+    #
+install_packages:
+ - ansible
+ - code
+ - ansible-lint
+ - git
+...
