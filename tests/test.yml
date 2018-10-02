@@ -27,4 +27,10 @@
   roles:
     - install_manager  
 
-  
+- hosts: localhost
+  connection: local    
+  tasks:
+    - include_tasks:
+       package_creator.yml
+      when: (pkg_create| bool == true)
+      tags: ['never','create']

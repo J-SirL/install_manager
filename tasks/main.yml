@@ -1,16 +1,23 @@
 ---
 # tasks file for install_manager
-# This is the Menu 
     - name: Include Set deployment task
       include_tasks:
        tasks/set_deployment.yml
       when: (depll is defined) and (set_env is defined) and (set_env|bool == true)
+
+# Create new package and new env
+  #  - name: Create a new program package 
+   #   import:
+   #     tasks/package_creator.yml
+   #   when: (pkg_create| bool == true)
+   #   tags: ['never','create']
 
     - name: Clear gathered facts from all currently targeted hosts
       meta: clear_facts
     - name: Import Menu Variables
       include_vars: 'defaults/package_menu.yml'
 
+# This is the Menu 
     - name: Populate Install Menu
       set_fact:
         bothld: "{{ bothld|default([]) + [ {'deployment': item.deployment, 'long_depl': item.long_depl} ] }}"
@@ -98,5 +105,3 @@
        msg:  "{{ item.long_depl }}{{ item.deployment }}"
       with_items: "{{ hostvars[inventory_hostname].bothld}}" 
 
-    
-    

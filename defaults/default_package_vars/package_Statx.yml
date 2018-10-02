@@ -17,4 +17,6 @@ install_packages:
  - code
  - ansible-lint
  - git
+ - tree
+ - wget
 ...

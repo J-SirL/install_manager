@@ -65,6 +65,9 @@ Default values that you can use with **depll** variable:
 
     ansible-playbook -i inventory test.yml -e depll=production -t set_dep -l hostname
 
+**Create a package_file.yml
+package_creator.yml -e pkg_ow=redo_Statx
+main.yml
 
 
 License

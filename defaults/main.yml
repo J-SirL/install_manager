@@ -1,8 +1,5 @@
 ---
 # defaults file for install_manager
-#machine:
-#    - { deployment: Production }
-#    - { deployment: Development }
-#    - { deployment: Base }
+pkg_create: no
 
 
