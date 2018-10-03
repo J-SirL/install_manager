@@ -57,14 +57,14 @@
           or ( env |trim =='')
           #or ( "statmachine_info.stout |trim ==''" )
 
-    - name: Test Dev
-      include_vars:
-        file: defaults/default_package_vars/package_{{env}}.yml
-      when: ( env == 'Development') # and ( hostvars[inventory_hostname]['machine_deployment'] == env )
-    - name: Include Base
-      include_vars:
-        file: defaults/default_package_vars/package_{{env}}.yml
-      when: ( env == 'base')
+    #- name: Test Dev
+    #  include_vars:
+    ##    file: defaults/default_package_vars/package_{{env}}.yml
+     # when: ( env == 'Development') # and ( hostvars[inventory_hostname]['machine_deployment'] == env )
+    #- name: Include Base
+   #   include_vars:
+   #     file: defaults/default_package_vars/package_{{env}}.yml
+   #   when: ( env == 'base')
 
     # Trying to Automate the loading of var files
     - name: Test Auto Load
