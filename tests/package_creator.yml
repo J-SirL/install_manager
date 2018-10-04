@@ -1,0 +1,35 @@
+---
+#- hosts: localhost
+#  connection: local
+  vars:
+    deploya_env_long: stationY
+    deploya_env_short: Staty
+    template_string: 'This packagefile has the long_env set to:"{{deploya_env_long}}" and the short_en to:"{{deploya_env_short}}"'
+    tagged: "redo_{{ deploya_env_short }}"
+    programs: 
+        - { program: 'ansible'}
+        - { program: 'code'}
+        - { program: 'ansible-lint'}
+        - { program: 'git'}
+        - { program: 'tree'}
+        - { program: 'wget'}
+    
+    env_tag_ovvervvrite: nofeck
+ 
+  tasks:
+    - name: Check if default_env_file_exists
+      stat:
+        path: "../defaults/default_package_vars/package_{{deploya_env_short}}.yml"
+      register: default_package_env_exists
+      changed_when: no
+
+    - name: Create the file package file
+      template:
+        src: ../templates/install_package_var_file.j2
+        dest: "../defaults/default_package_vars/package_{{deploya_env_short}}.yml"
+      when: not default_package_env_exists.stat.exists or ( pkg_ow == tagged )
+
+    - debug:
+        var: tagged
+
+    
