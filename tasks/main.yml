@@ -23,11 +23,22 @@
         bothld: "{{ bothld|default([]) + [ {'deployment': item.deployment, 'long_depl': item.long_depl} ] }}"
         deployments: "{{ deployments|default([]) + [  item.deployment  ] }}"
       with_items: "{{ machine.env }}"
-
+    
+    - name: Debug | bothld | Tests
+      debug:
+        var: bothld
+    - name: Debug | deployments 
+      debug:
+        var: deployments
+    
     - name: Populate long_menu
       set_fact:
         longdep: "{{ longdep|default([]) + [  item.long_depl  ] }}"
       with_items: "{{ machine.env }}" 
+
+    - name: Debug | longdep
+      debug:
+        var: longdep
 
     - name: Read Machine-Information from machine-info
       command: sed 's/^DEPLOYMENT=//' /etc/machine-info
@@ -63,16 +74,7 @@
           or (env is none)
           or ( env |trim =='')
           #or ( "statmachine_info.stout |trim ==''" )
-
-    - name: Test Dev
-      include_vars:
-        file: defaults/default_package_vars/package_{{env}}.yml
-      when: ( env == 'Development') # and ( hostvars[inventory_hostname]['machine_deployment'] == env )
-    - name: Include Base
-      include_vars:
-        file: defaults/default_package_vars/package_{{env}}.yml
-      when: ( env == 'base')
-
+  
     # Trying to Automate the loading of var files
     - name: Test Auto Load
       include_vars:

@@ -1,0 +1,36 @@
+---
+- 
+- name: Read env-type 
+  command: sed 's/^Env-Type://' /etc/motd
+  args:
+    warn: false
+  register: env-type_stat
+  changed_when: no
+
+- name: Read Prereqs
+  command: sed 's/^Prereqs://' /etc/motd
+  args:
+    warn: false
+  register: prereqs_stat
+  changed_when: no
+
+- name: Read Department
+  command: sed 's/^Department://' /etc/motd
+  args:
+    warn: false
+  register: department_info
+  changed_when: no
+
+- name: Read SeqCode
+  command: sed 's/^SeqCode://' /etc/machine-info
+  args:
+    warn: false
+  register: SeqCode_info
+  changed_when: no
+
+
+#Env-Type:
+#Prereqs:
+#Department:
+#SeqCode:
+...
