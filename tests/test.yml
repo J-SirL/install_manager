@@ -34,3 +34,9 @@
        package_creator.yml
       when: (pkg_create| bool == true)
       tags: ['never','create']
+- hosts: localhost
+  tasks:
+    - include_tasks: 
+       ../tasks/package_installer.yml
+  tags: ['never', 'package_install']
+    

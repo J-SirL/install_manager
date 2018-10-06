@@ -1,32 +1,44 @@
 ---
 - 
-- name: Read env-type 
-  command: sed 's/^Env-Type://' /etc/motd
+- name: Read env-type  #command: sed 's/^Env-Type://' /etc/motd
+  command: awk '{for(i=1;i<=NF;i++)if($i~/Env-Type:/)print $(i+1)}' /etc/motd
   args:
     warn: false
-  register: env-type_stat
+  register: env_type_stat
   changed_when: no
 
 - name: Read Prereqs
-  command: sed 's/^Prereqs://' /etc/motd
+  command: awk '{for(i=1;i<=NF;i++)if($i~/Prereqs:/)print $(i+1)}' /etc/motd
   args:
     warn: false
   register: prereqs_stat
   changed_when: no
 
 - name: Read Department
-  command: sed 's/^Department://' /etc/motd
+  command: awk '{for(i=1;i<=NF;i++)if($i~/^Department:/)print $(i+1)}' /etc/motd 
   args:
     warn: false
-  register: department_info
+  register: department_stat
   changed_when: no
 
-- name: Read SeqCode
-  command: sed 's/^SeqCode://' /etc/machine-info
-  args:
-    warn: false
-  register: SeqCode_info
-  changed_when: no
+- name: DEBUG | env-type_stat
+  debug:
+    var: env_type_stat.stdout
+
+- name: DEBUG | prereqs_stat
+  debug:
+    var: prereqs_stat.stdout
+
+- name: DEBUG | department_info
+  debug:
+    var: department_stat.stdout
+
+#- name: Read SeqCode
+#  command: sed 's/^SeqCode://' /etc/machine-info
+#  args:
+#    warn: false
+#  register: SeqCode_info
+#  changed_when: no
 
 
 #Env-Type:
