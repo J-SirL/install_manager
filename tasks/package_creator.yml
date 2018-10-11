@@ -17,6 +17,11 @@
     env_tag_ovvervvrite: nofeck
  
   tasks:
+    #- name: check if package path exist
+    #  stat:
+    #    path: {{ playbook_dir"}}
+      
+
     - name: Check if default_env_file_exists
       stat:
         path: "../defaults/default_package_vars/package_{{deploya_env_short}}.yml"

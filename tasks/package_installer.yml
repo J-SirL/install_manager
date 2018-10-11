@@ -24,14 +24,19 @@
 - name: DEBUG | env-type_stat
   debug:
     var: env_type_stat.stdout
+  tags: [ 'never', 'debug' ]
 
 - name: DEBUG | prereqs_stat
   debug:
     var: prereqs_stat.stdout
+  tags: [ 'never', 'debug' ]
 
 - name: DEBUG | department_info
   debug:
     var: department_stat.stdout
+  tags: ['never', 'debug']
+  #tags:
+  # - ['never', 'debug']
 
 #- name: Read SeqCode
 #  command: sed 's/^SeqCode://' /etc/machine-info
@@ -40,8 +45,15 @@
 #  register: SeqCode_info
 #  changed_when: no
 
+- name: Program_Installer TEST!
+  debug:
+    msg: "Programinstallation"
+  #when: env_type_stat.stdout == ()  
 
-#Env-Type:
+- debug:
+    var: hostvars[inventory_hostname]
+    
+    #Env-Type:
 #Prereqs:
 #Department:
 #SeqCode:

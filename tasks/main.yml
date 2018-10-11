@@ -105,5 +105,9 @@
       with_items: "{{ hostvars[inventory_hostname].bothld }}"
     - debug:
        msg:  "{{ item.long_depl }}{{ item.deployment }}"
-      with_items: "{{ hostvars[inventory_hostname].bothld}}" 
+      with_items: "{{ hostvars[inventory_hostname].bothld}}"
+  
+    - name: LOAD DEBUG | 
+      include_tasks: dev_debug.yml
+      tags: ['never', 'debug']
 
