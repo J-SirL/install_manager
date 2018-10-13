@@ -1,3 +1,16 @@
 ---
 # vars file for install_manager
 test:  "{{ hostvars[inventory_hostname]['machine_deployment'] }}"
+deploya_env_long: stationY
+deploya_env_short: Staty
+template_string: 'This packagefile has the long_env set to:"{{deploya_env_long}}" and the short_en to:"{{deploya_env_short}}"'
+tagged: "redo_{{ deploya_env_short }}"
+programs: 
+ - { program: 'ansible'}
+ - { program: 'code'}
+ - { program: 'ansible-lint'}
+ - { program: 'git'}
+ - { program: 'tree'}
+ - { program: 'wget'}
+ 
+env_tag_ovvervvrite: nofeck
