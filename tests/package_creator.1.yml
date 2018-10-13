@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Check if default_env_file_exists
+      stat:
+        path: "../defaults/default_package_vars/package_{{deploya_env_short}}.yml"
+        register: default_package_env_exists
+        changed_when: no
+
+        - name: Create the file package file
+          template:
+            src: ../templates/install_package_var_file.j2
+            dest: "../defaults/default_package_vars/package_{{deploya_env_short}}.yml"
+          when: not default_package_env_exists.stat.exists or ( pkg_ow == tagged )
+
+        - debug:
+            var: tagged
+
+    
