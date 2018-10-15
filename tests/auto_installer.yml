@@ -1,0 +1,14 @@
+# Automatically install 
+---
+- hosts: localhost
+  gather_facts: yes
+  tasks:
+
+    # Trying to Automate the loading of var files
+    - name: Test Auto Load
+      include_vars:
+        file: "defaults/default_package_vars/package_{{ item.deployment }}.yml"
+      when: ( env == item.deployment ) and ( hostvars[inventory_hostname]['machine_deployment'] == item.long_depl )
+      #with_items: "{{ hostvars[inventory_hostname].deployments }}"
+      with_items: "{{ hostvars[inventory_hostname].bothld}}" 
+      ## End test
